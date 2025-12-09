@@ -25,7 +25,7 @@ class Connessione:
         mappa = {
             'facile': 1.0,
             'media': 1.5,
-            'difficile': 2.5
+            'difficile': 2.0
         }
         return mappa.get(self.difficolta, 1)
 

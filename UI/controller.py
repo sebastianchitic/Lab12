@@ -47,7 +47,7 @@ class Controller:
         self._view.page.update()
 
     """Implementare la parte di ricerca del cammino minimo"""
-    def handle_cammino_minimo(self):
+    def handle_cammino_minimo(self, soglia):
         try:
             soglia = float(self._view.txt_soglia.value)
         except ValueError:

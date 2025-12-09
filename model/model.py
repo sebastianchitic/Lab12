@@ -70,7 +70,7 @@ class Model:
         for n in self.G.nodes():
             valid_neighbors = []
             for neighbor in self.G.neighbors(n):
-                weight = self.G.nodes[n]['weight']
+                weight = self.G[n][neighbor]['weight']
                 if weight > soglia:
                     valid_neighbors.append((neighbor, weight))
 
@@ -86,7 +86,7 @@ class Model:
                     min_total_weight = current_weight
                     best_path = [n1, n, n2]
 
-            return best_path, min_total_weight
+        return best_path, min_total_weight
 
 
 
