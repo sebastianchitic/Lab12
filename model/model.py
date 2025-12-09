@@ -29,7 +29,7 @@ class Model:
             if c.id_rifugio1 in self.id_map and c.id_rifugio2 in self.id_map:
                 n1 = self.id_map[c.id_rifugio1]
                 n2 = self.id_map[c.id_rifugio2]
-                self.G.add_edge(n1, n2, weight = Connessione.peso)
+                self.G.add_edge(n1, n2, weight = c.peso)
 
 
     def get_edges_weight_min_max(self):
@@ -54,10 +54,11 @@ class Model:
         self.massimi = 0
         self.minimi = 0
 
-        for g in self.G.edges():
-            if soglia < self.G.nodes[g]['weight']:
+        for u,v,data in self.G.edges():
+            peso = data['weight']
+            if peso > soglia:
                 self.massimi += 1
-            if soglia > self.G.nodes[g]['weight']:
+            elif peso < soglia:
                 self.minimi += 1
         return self.massimi, self.minimi
 

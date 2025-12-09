@@ -23,15 +23,15 @@ class Connessione:
     @property
     def fattore_difficolta(self):
         mappa = {
-            'Bassa': 1.0,
-            'Media': 1.5,
-            'Alta': 2.5
+            'facile': 1.0,
+            'media': 1.5,
+            'difficile': 2.5
         }
         return mappa.get(self.difficolta, 1)
 
     @property
     def peso(self):
-        return self.distanza * self.fattore_difficolta
+        return float(self.distanza) * self.fattore_difficolta
 
     def __str__(self):
         return f"{self.id} {self.id_rifugio1} {self.id_rifugio2}"
