@@ -54,7 +54,7 @@ class Model:
         self.massimi = 0
         self.minimi = 0
 
-        for u,v,data in self.G.edges():
+        for u,v,data in self.G.edges(data=True):
             peso = data['weight']
             if peso > soglia:
                 self.massimi += 1
@@ -63,4 +63,31 @@ class Model:
         return self.massimi, self.minimi
 
     """Implementare la parte di ricerca del cammino minimo"""
-    # TODO
+    def get_shortest_path(self, soglia):
+        best_path = []
+        min_total_weight = float('inf')
+
+        for n in self.G.nodes():
+            valid_neighbors = []
+            for neighbor in self.G.neighbors(n):
+                weight = self.G.nodes[n]['weight']
+                if weight > soglia:
+                    valid_neighbors.append((neighbor, weight))
+
+            if len(valid_neighbors) >= 2:
+                valid_neighbors.sort(key = lambda x: x[1])
+
+                n1, w1 = valid_neighbors[0]
+                n2, w2 = valid_neighbors[1]
+
+                current_weight = w1 + w2
+
+                if current_weight < min_total_weight:
+                    min_total_weight = current_weight
+                    best_path = [n1, n, n2]
+
+            return best_path, min_total_weight
+
+
+
+
